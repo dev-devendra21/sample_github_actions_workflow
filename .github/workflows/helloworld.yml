@@ -4,8 +4,9 @@ name: "hello world workflow"
 on:
   push:
     branches:
-      - main
-      - prod
+      - "*" # matches any branch
+      # - main
+      # - prod
 
 # define the jobs to run
 jobs:
