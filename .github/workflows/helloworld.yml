@@ -1,0 +1,16 @@
+name: "hello world workflow"
+
+# when we push to main or prod, run the workflow
+on:
+  push:
+    branches:
+      - main
+      - prod
+
+# define the jobs to run
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello
+        run: echo "Hello World"
