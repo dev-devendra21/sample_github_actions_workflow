@@ -1,16 +1,24 @@
+# name of the workflow/pipeline
 name: "hello world workflow"
 
 # when we push to main or prod, run the workflow
 on:
-  push:
+  push: # event trigger
     branches:
       - "*" # matches any branch
       # - main
       # - prod
 
+  pull_request:
+    branches:
+      - "*"
+
+  workflow_dispatch: # manual trigger to run the workflow from the UI in github
+
 # define the jobs to run
 jobs:
-  hello_world_job:
+  hello_world_job: # name of the job 1
+    if: github.event_name == 'push' # only run if the event is push
     runs-on: ubuntu-latest
     steps:
       - name: "print hello world"
@@ -18,3 +26,10 @@ jobs:
 
       - name: "print current date"
         run: date
+
+  pull_request_job: # name of the job 2
+    if: github.event_name == 'pull_request' # only run if the event is pull request
+    runs-on: ubuntu-latest
+    steps:
+      - name: "print pull request"
+        run: echo "pull request"
